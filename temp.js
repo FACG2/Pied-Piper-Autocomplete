@@ -5,33 +5,34 @@ var srcPath = __dirname + '/lib/count_uni.json';
 
 
 
-function getData(srcPath, cb) {
+function getData(srcPath) {
 
-fs.readFile(srcPath, 'utf8', function (err, data) {
-        if (err)
-        console.log(err);
-        else {
+      fs.readFile(srcPath, 'utf8', function (err, data) {
+              if (err)
+              console.log(err);
+              else {
+                var id=0;
+              var dataJson=JSON.parse(data);
+                 var dataJso=dataJson.reduce((cum ,uni)=>{
+                   if(cum.indexOf(uni.country) === -1)
+                    cum.push(uni.country);
 
-          cb(savPath ,JSON.parse(data));
-        }
-        }
-    );
-}
+                  return cum;
+                },[])
+                console.log('data',dataJso);
+                fs.writeFile(savPath , JSON.stringify(dataJso) ,function() {
+                  if(err)
+                  console.log(err);
+                  else {
+                    console.log('Complete');
+                  }
+                })
+              }
+            });
 
 
-function writeTextFile(filepath, output) {
 
-}
-getData(srcPath ,()=> {
-  var txtFile = new File(filepath);
-  txtFile.open("w");
-  data.reduce((acum , uniObj)=>{
-    if(acum !== uniObj.country){
-      txtFile.writeln(uniObj.country+',');
-    return uniObj.country;
   }
-  },{});
-   //
 
-	txtFile.close();
-});
+
+getData(srcPath);

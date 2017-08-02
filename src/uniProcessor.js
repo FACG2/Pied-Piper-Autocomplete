@@ -1,53 +1,74 @@
 var fs = require('fs');
-var CountPath = __dirname + '/../lib/countries.json';
-var Uni_path = __dirname + '/../lib/count_uni.json';
-
-
+const countr = require('../lib/countries.json');
+const UniPath = require('../lib/count_uni.json');
 function matchedCountry(queryKey, cb) {
   var cntrs = '';
-  fs.readFile(CountPath, function(err, data) {
 
-    if (err) {
-      cb(err);
-    } else {
-      cntrs = JSON.parse(data);
-      var result = cntrs.filter(function(country)) {
-        return country.indexOf(queryKey) !== -1;
+      // console.log(typeof countr);
+      var result = countr.filter(function(country){
+        if(JSON.stringify(country).toLowerCase().indexOf(queryKey.toLowerCase()) === 1){
+        return country;
       }
+      });
       cb(null, result);
-      }
-    })
+
   }
-}
+
 function matchUni(queryUni , country, cb){
   var universties = '';
-  fs.readFile(Uni_path, function(err, data) {
-    if (err) {
-      cb(err);
-    } else {
-      universties = JSON.parse(data);
-      var result = universties.reduce(function(uniLst,uni){
-        if(uni.country == queryKey)
-        return uni.name;
-      },{})
-      .filter(function(university)) {
-        return university.indexOf(queryUni) !== -1;
+  // fs.readFile(Uni_path, function(err, data) {
+  //   if (err) {
+  //     cb(err);
+  //   } else {
+  //     ;
+      var uniList=[];
+
+      var result = UniPath.reduce(function(previUni , uni){
+        // console.log('hhhh',JSON.stringify(uni));
+        ;
+        if(uni.country.toLowerCase() == country.toLowerCase()){
+        return uniList.push(uni);}
+      })
+
+      var res=uniList.filter(function(university){
+        // console.log(university.name.toLowerCase().indexOf);
+        return university.name.toLowerCase().startsWith(queryUni.toLowerCase());
+      }).map(function(uniObj) {
+        return uniObj.name;
+      });
+
+      // console.log(typeof res);
+      cb(null, res);
       }
 
-      cb(null, result);
+
+function findUni(universityId,cb){
+      var result=UniPath.filter((university)=>
+      {
+        if(university.domain == universityId)
+        return university;
       }
-    })
+    );
+    cb(result);
 }
-function findUni(universityId ,cb){
-  var universties = '';
-  fs.readFile(Uni_path, function(err, data) {
-    if (err) {
-      cb(err);
-    } else {
-      universties = JSON.parse(data);
-      var result = universties.find((uni) => {
-        return uni.domain === universityId;
-      });
-      }
-    })
-}
+
+// findUni('harvard.edu',(res)=> {
+//   console.log(res);
+// }
+// )
+
+
+// matchedCountry('United States', function(err ,result) {
+//   if(err)
+//   console.log(err);
+//   else {
+//   console.log(result);
+//   }
+// // })
+matchUni('har' , 'United States',  function(err ,res) {
+  if(err)
+  console.log(err);
+  else {
+  console.log(res);
+  }
+})
