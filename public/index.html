@@ -7,9 +7,15 @@
 </head>
 <body>
   <form id="seach-form">
-    <input id="searchQ" type="text" name="description" value="" required>
-    <button id="submit" type="submit" name="">Search</button>
+    <input id="countryQ" list="countrylist" type="text" name="countrylist" value="" required>
+    <datalist id="countrylist">
+    </datalist>
+    <input id="uniQ" list="uniList" type="text" name="uniList" value="" required>
+    <datalist id="uniList">
+    </datalist>
+    <button id="submited" type="submit" name="">Search</button>
   </form>
+  <script type="text/javascript" src="./public/js/request.js"></script>
   <script type="text/javascript" src="./public/js/index.js"></script>
 </body>
 </html>

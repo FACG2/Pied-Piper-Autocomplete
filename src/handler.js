@@ -55,17 +55,30 @@ function jsonHandler(req, res){
 
 
 function serveApi(req,res){
+  var url=req.url;
   var parts = req.url.split("=");
   var query = parts[parts.length - 1];
-  pros.matchedCountry(query , (err, result)=>{
+  if(url.startsWith('/api/country?q=')){
+  pros.matchedCountry(query, (err, result)=>{
         if (err) {
         res.writeHead(500, {'content-type': 'text/plain'});
         res.end('server error');
       } else {
-        res.writeHead(200, {'content-type': 'applicatin/json']});
+        res.writeHead(200, {'content-type': 'applicatin/json'});
         res.end(result);
       }
-  })
+  });}
+  else {
+    pros.matchedUni(query , (err, result)=>{
+        if (err) {
+        res.writeHead(500, {'content-type': 'text/plain'});
+        res.end('server error');
+      } else {
+        res.writeHead(200, {'content-type': 'applicatin/json'});
+        res.end(result);
+      }
+  });
+  }
 
 }
 module.exports = {
