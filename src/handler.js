@@ -27,7 +27,6 @@ function publicHandler(req, res){
   var url = req.url;
   var parts = url.split(".");
   var fileExtention = parts[parts.length - 1];
-  console.log(__dirname+ '/..' + url);
   fs.readFile(__dirname+ '/..' + url, (err, file) => {
       /* istanbul ignore if */
       if (err) {
@@ -66,27 +65,22 @@ function serveApi(req,res){
 
   pros.matchedCountry(query, (err, result)=>{
         if (err) {
-        console.log(query);
         res.writeHead(500, {'content-type': 'text/plain'});
         res.end('server error');
       } else {
         res.writeHead(200, {'content-type': 'application/json'});
-        console.log(JSON.stringify(result));
         res.end(JSON.stringify(result));
       }
   });
   }else if(url.startsWith('/api/uni/?q=')) {
     ///api/uni/?q=a&c=United+States
     var part=url.split("=");
-    console.log('////qeru:',part[parts.length - 2].split("&")[0].replace( /\+/g, ' '));
-    console.log('////Country:',part[parts.length - 1].replace('+', ' ') );
     pros.matchUni(part[parts.length - 2].split("&")[0].replace( /\+/g, ' '),part[parts.length - 1].replace( /\+/g, ' ') , (err, result)=>{
         if (err) {
         res.writeHead(500, {'content-type': 'text/plain'});
         res.end('server error');
       } else {
         res.writeHead(200, {'content-type': 'application/json'});
-        console.log(JSON.stringify(result));
         res.end(JSON.stringify(result));
       }
   });
@@ -98,7 +92,6 @@ function serveApi(req,res){
         res.writeHead(500, {'content-type': 'text/plain'});
         res.end('server error');
       }else{
-        console.log(JSON.stringify(err));
         res.writeHead(200, {'content-type': 'application/json'});
         res.end(JSON.stringify(result));
       }

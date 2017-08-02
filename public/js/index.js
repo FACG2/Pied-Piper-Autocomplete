@@ -71,7 +71,8 @@ function showSug(data ,thisElement){
 function showUniDet(data){
 		var uniDiv = document.getElementById("uni-details");
 		uniDiv.innerHTML="";
-
+		countries.value="";
+		universties.value="";
 		var universiyDomain=document.createElement('a');
 		universiyDomain.classList.add('uniDomain');
 		universiyDomain.setAttribute("href",data[0].web_page);
