@@ -42,33 +42,12 @@ function matchUni(queryUni , country, cb){
       }
 
 
-function findUni(universityId,cb){
+function findUni(universityName,cb){
       var result=UniPath.filter((university)=>
       {
-        if(university.domain == universityId)
+        if(university.name.toLowerCase().trim() == universityName.toLowerCase().trim())
         return university;
       }
     );
     cb(result);
 }
-
-// findUni('harvard.edu',(res)=> {
-//   console.log(res);
-// }
-// )
-
-
-// matchedCountry('United States', function(err ,result) {
-//   if(err)
-//   console.log(err);
-//   else {
-//   console.log(result);
-//   }
-// // })
-matchUni('har' , 'United States',  function(err ,res) {
-  if(err)
-  console.log(err);
-  else {
-  console.log(res);
-  }
-})
