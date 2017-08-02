@@ -69,11 +69,28 @@ function showSug(data ,thisElement){
 	}
 
 function showUniDet(data){
-	var UniDetails=document.getElementById('uni-details');
-		UniDetails.innerHTML="";
+		var uniDiv = document.getElementById("uni-details");
+		uniDiv.innerHTML="";
+		countries.value="";
+		universties.value="";
+		var universiyDomain=document.createElement('a');
+		universiyDomain.classList.add('uniDomain');
+		universiyDomain.setAttribute("href",data[0].web_page);
+		universiyDomain.setAttribute("target","_blank");	
 
+		uniDiv.appendChild(universiyDomain);
 
-		console.log(data);
+		var universiyName=document.createElement('h2');
+		universiyName.classList.add('uniName');
+		universiyName.textContent=data[0].name;
+		universiyDomain.appendChild(universiyName);
+
+		var universiyCountry=document.createElement('p');
+		universiyCountry.classList.add('uniCountry');
+		universiyCountry.textContent=data[0].country;
+		uniDiv.appendChild(universiyCountry);
+
+		
 
 
 	}

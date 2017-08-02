@@ -3,7 +3,6 @@ var handlers = require('./handler.js');
 
 function router(req, res){
   var url = req.url;
-  console.log(url)
   if (url === '/') {
     handlers.homeHandler(req, res);
   }else if(url.startsWith('/public')){

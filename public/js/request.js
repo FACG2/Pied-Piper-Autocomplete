@@ -9,7 +9,6 @@
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           cb(null, JSON.parse(xhr.responseText));
-          console.log(JSON.parse(xhr.responseText));
         } else {
           
           console.log("XHR ELSE not 200")
