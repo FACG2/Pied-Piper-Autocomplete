@@ -12,7 +12,7 @@
 ## What is the Sites structure?
 The site contains 3 folders:
 1. **public folder:**
-the frond end part contains two sub-folders : **css folder** : contains the css files, and **js folder** contains the (request.js and index.js).
+the frond end part contains two sub-folders : **css folder** : contains the css files, and **js folder** contains the (request.js and index.js)and **image folder**: contains the images used in the site.
 
 2. **src folder:** The back end part contains js files (handler.js, router.js, server.js, test.js)
 3. **lib folder:** Coantains the JSON file.
