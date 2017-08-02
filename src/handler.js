@@ -27,10 +27,11 @@ function publicHandler(req, res){
   var url = req.url;
   var parts = url.split(".");
   var fileExtention = parts[parts.length - 1];
-  console.log(url);
-  fs.readFile(path.join(__dirname, '../' + url), (err, file) => {
+  console.log(__dirname+ '/..' + url);
+  fs.readFile(__dirname+ '/..' + url, (err, file) => {
       /* istanbul ignore if */
       if (err) {
+        console.log(err)
         res.writeHead(500, {'content-type': 'text/plain'});
         res.end('server error');
       } else {
@@ -59,32 +60,57 @@ function serveApi(req,res){
   var url=req.url;
   var parts = req.url.split("=");
   var query = parts[parts.length - 1];
-  if(url.startsWith('/api/country?q=')){
+  
+  if(url.startsWith('/api/country/?q=')){
+
+
   pros.matchedCountry(query, (err, result)=>{
         if (err) {
+        console.log(query);
         res.writeHead(500, {'content-type': 'text/plain'});
         res.end('server error');
       } else {
-        res.writeHead(200, {'content-type': 'applicatin/json'});
-        res.end(result);
+        res.writeHead(200, {'content-type': 'application/json'});
+        console.log(JSON.stringify(result));
+        res.end(JSON.stringify(result));
       }
   });
-  }else if(url.startsWith('/api/uni?q=')) {
-    pros.matchedUni(query , (err, result)=>{
+  }else if(url.startsWith('/api/uni/?q=')) {
+    ///api/uni/?q=a&c=United+States
+    var part=url.split("=");
+    console.log('////qeru:',part[parts.length - 2].split("&")[0].replace( /\+/g, ' '));
+    console.log('////Country:',part[parts.length - 1].replace('+', ' ') );
+    pros.matchUni(part[parts.length - 2].split("&")[0].replace( /\+/g, ' '),part[parts.length - 1].replace( /\+/g, ' ') , (err, result)=>{
         if (err) {
         res.writeHead(500, {'content-type': 'text/plain'});
         res.end('server error');
       } else {
-        res.writeHead(200, {'content-type': 'applicatin/json'});
-        res.end(result);
+        res.writeHead(200, {'content-type': 'application/json'});
+        console.log(JSON.stringify(result));
+        res.end(JSON.stringify(result));
       }
   });
+  }
+  else if(url.startsWith('/api/getUni/?q=')){
+
+    pros.findUni(query.replace( /\+/g, ' '),(err , result)=>{
+      if(err){
+        res.writeHead(500, {'content-type': 'text/plain'});
+        res.end('server error');
+      }else{
+        console.log(JSON.stringify(err));
+        res.writeHead(200, {'content-type': 'application/json'});
+        res.end(JSON.stringify(result));
+      }
+    })
+
   }
 
 }
 module.exports = {
   homeHandler:homeHandler,
   publicHandler:publicHandler,
+  serveApi:serveApi,
   // notFoundHandler:notFoundHandler,
   // jsonHandler:jsonHandler
 };

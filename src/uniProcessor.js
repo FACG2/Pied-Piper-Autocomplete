@@ -1,6 +1,8 @@
 var fs = require('fs');
 const countr = require('../lib/countries.json');
 const UniPath = require('../lib/count_uni.json');
+
+
 function matchedCountry(queryKey, cb) {
   var cntrs = '';
 
@@ -25,10 +27,10 @@ function matchUni(queryUni , country, cb){
 
       var result = UniPath.reduce(function(previUni , uni){
         // console.log('hhhh',JSON.stringify(uni));
-        ;
+        
         if(uni.country.toLowerCase() == country.toLowerCase()){
         return uniList.push(uni);}
-      })
+      });
 
       var res=uniList.filter(function(university){
         // console.log(university.name.toLowerCase().indexOf);
@@ -39,6 +41,7 @@ function matchUni(queryUni , country, cb){
 
       // console.log(typeof res);
       cb(null, res);
+
       }
 
 
@@ -48,6 +51,14 @@ function findUni(universityName,cb){
         if(university.name.toLowerCase().trim() == universityName.toLowerCase().trim())
         return university;
       }
-    );
-    cb(result);
+      );
+        console.log(result);
+        cb(null ,result);
+    }
+
+
+module.exports={
+  matchedCountry:matchedCountry,
+  matchUni:matchUni,
+  findUni:findUni
 }

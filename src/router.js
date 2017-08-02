@@ -3,14 +3,18 @@ var handlers = require('./handler.js');
 
 function router(req, res){
   var url = req.url;
- 
+  console.log(url)
   if (url === '/') {
     handlers.homeHandler(req, res);
   }else if(url.startsWith('/public')){
   	handlers.publicHandler(req,res);
-  }else if(url.startsWith('Api/uni/?q=')){
-  	handlers.ServeApi(req ,res);}
-  	else if (url.startsWith('Api/country/?q=')){
-  	handlers.ServeApi(req ,res);}	
+  }else if(url.startsWith('/api/uni/?q=')){
+  	handlers.serveApi(req ,res);}
+  	else if (url.startsWith('/api/country/?q=')){
+  	handlers.serveApi(req ,res);}
+    else if (url.startsWith('/api/getUni/?q=')){
+    handlers.serveApi(req ,res);}
+    else
+     	 handlers.homeHandler(req, res);
   }
 module.exports = router;
