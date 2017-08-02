@@ -23,7 +23,7 @@ the frond end part contains two sub-folders : **css folder **: contains the css 
 3. The site will reveal the information about the wanted university.
 
 ## How to run the project:
-1. Clone the project from [Here:](https://github.com/FACG2/Pied-Piper-Autocomplete).
+1. Clone the project from [Here](https://github.com/FACG2/Pied-Piper-Autocomplete).
 2. In terminal move the the project directory ```>cd Pied-Piper-Autocomplete```
 3. Type ```atom .``` to open the project using atom application.
 4. Right click on ```index.html``` and choose ```show in File Manager```.
