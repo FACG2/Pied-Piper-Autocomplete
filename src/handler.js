@@ -5,7 +5,8 @@ const pros = require('./uniProcessor.js')
 var contentTypes = {
   css:'text/css',
   js:'application/javascript',
-  html:'text/html'
+  html:'text/html',
+  jpg:'image/jpg'
 }
 
 function homeHandler(req, res){
@@ -27,7 +28,7 @@ function publicHandler(req, res){
   var parts = url.split(".");
   var fileExtention = parts[parts.length - 1];
   console.log(url);
-  fs.readFile(path.join(__dirname, '../' + url), 'utf8', (err, file) => {
+  fs.readFile(path.join(__dirname, '../' + url), (err, file) => {
       /* istanbul ignore if */
       if (err) {
         res.writeHead(500, {'content-type': 'text/plain'});
@@ -67,8 +68,8 @@ function serveApi(req,res){
         res.writeHead(200, {'content-type': 'applicatin/json'});
         res.end(result);
       }
-  });}
-  else {
+  });
+  }else if(url.startsWith('/api/uni?q=')) {
     pros.matchedUni(query , (err, result)=>{
         if (err) {
         res.writeHead(500, {'content-type': 'text/plain'});
