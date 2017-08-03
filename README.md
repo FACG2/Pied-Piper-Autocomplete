@@ -24,11 +24,9 @@ the frond end part contains two sub-folders : **css folder **: contains the css 
 
 ## How to run the project:
 1. Clone the project from [Here](https://github.com/FACG2/Pied-Piper-Autocomplete).
-2. In terminal move the the project directory ```>cd Pied-Piper-Autocomplete```
-3. Type ```atom .``` to open the project using atom application.
-4. Right click on ```index.html``` and choose ```show in File Manager```.
-5. In file manager window right click on ```index.html``` and choose ```open with Google Chrome```.
+2. Install the npm by ``` npm install ``` to install all dependencies
+3. Run ``` node src/server.js ```
+4. Navigate to  http://localhost:4000/  in your browser.
 6. Start using the site.
-
 
 ##### Try the site: [here](https://pied-piper-universities.herokuapp.com)
