@@ -1,12 +1,12 @@
 var fs = require('fs');
-const countr = require('../lib/countries.json');
+const countryList = require('../lib/countries.json');
 const UniPath = require('../lib/count_uni.json');
 
 
 function matchedCountry(queryKey, cb) {
   var cntrs = '';
 
-      var result = countr.filter(function(country){
+      var result = countryList.filter(function(country){
         if(JSON.stringify(country).toLowerCase().indexOf(queryKey.toLowerCase()) === 1){
         return country;
       }
