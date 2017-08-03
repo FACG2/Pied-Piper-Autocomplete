@@ -15,7 +15,6 @@ countries.addEventListener('keyup',function(event){
 		if(err)
 		console.log(err);
 		else{
-		// console.log('countrey Key up',data);
 		showSug(data, event.target);
 			}
 	})
@@ -27,11 +26,10 @@ universties.addEventListener('keyup',function(event){
 	var country=document.getElementById('countryQ').value.replace(/ /g, '+') ;
 
 	
-	_request(urls.uni+event.target.value+'&\?c='+country, (err,data)=>{
+	_request(urls.uni+event.target.value.replace(/ /g, '+')+'&\?c='+country, (err,data)=>{
 		if(err)
 			console.log(err);
 		else{
-			console.log('uni Key up',data);
 			showSug(data, event.target);
 		}
 		
@@ -44,11 +42,10 @@ submit.addEventListener('click',function(event){
 	var universiy=document.getElementById('uniQ').value.replace(/ /g, '+') ;
 
 	
-	_request(urls.sUn+universiy, (err,data)=>{
-		if(err)
+	_request(urls.sUn+universiy.replace(/ /g, '+'), (err,data)=>{
+		if(err){
 			console.log(err);
-		else{
-			console.log('uniersity details Key up',data);
+		}else{
 			showUniDet(data);
 		}
 		
@@ -69,6 +66,8 @@ function showSug(data ,thisElement){
 	}
 
 function showUniDet(data){
+
+	if(data[0] != null){
 		var uniDiv = document.getElementById("uni-details");
 		uniDiv.innerHTML="";
 		countries.value="";
@@ -88,13 +87,25 @@ function showUniDet(data){
 		var universiyCountry=document.createElement('p');
 		universiyCountry.classList.add('uniCountry');
 		universiyCountry.textContent=data[0].country;
-		uniDiv.appendChild(universiyCountry);
-
+		uniDiv.appendChild(universiyCountry);			
+		}else{
+			ifUniNotFound();
+		}
 		
 
 
 	}
 
+function ifUniNotFound(){
+var uniDiv = document.getElementById("uni-details");
+	uniDiv.innerHTML = "";
+	countries.value="";
+	universties.value="";
+	var notFound=document.createElement('p');
+		notFound.classList.add('notFound');
+		notFound.textContent="Oops! there is no university matches your search!";
+		uniDiv.appendChild(notFound);
+}
 
 //uni-details
 })()
