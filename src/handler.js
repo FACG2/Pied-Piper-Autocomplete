@@ -41,8 +41,8 @@ function publicHandler(req, res){
 }
 
 function notFoundHandler(req, res){
-  res.writeHead(404, {'content-type': 'text/plain'});
-  res.end('404 server error');
+  res.writeHead(404, {'content-type': 'text/html'});
+  res.end('<center><h1>404 Page Not Found</h1></center>');
 }
 
 function jsonHandler(req, res){
@@ -104,6 +104,6 @@ module.exports = {
   homeHandler:homeHandler,
   publicHandler:publicHandler,
   serveApi:serveApi,
-  // notFoundHandler:notFoundHandler,
+  notFoundHandler:notFoundHandler,
   // jsonHandler:jsonHandler
 };

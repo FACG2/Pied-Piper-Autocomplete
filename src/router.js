@@ -14,6 +14,6 @@ function router(req, res){
     else if (url.startsWith('/api/getUni/?q=')){
     handlers.serveApi(req ,res);}
     else
-     	 handlers.homeHandler(req, res);
+     	 handlers.notFoundHandler(req, res);
   }
 module.exports = router;

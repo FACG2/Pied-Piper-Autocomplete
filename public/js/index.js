@@ -5,9 +5,9 @@ var universties=document.getElementById('uniQ');
 var submit=document.getElementById('submited');
 
 var urls={
-	coun:'https://pied-piper-universities.herokuapp.com/api/country/?q=',
-	uni:'https://pied-piper-universities.herokuapp.com/api/uni/?q=',
-	sUn:'https://pied-piper-universities.herokuapp.com/api/getUni/?q='
+	coun:'./api/country/?q=',
+	uni:'./api/uni/?q=',
+	sUn:'./api/getUni/?q='
 }
 countries.addEventListener('keyup',function(event){
 	
@@ -59,6 +59,7 @@ function showSug(data ,thisElement){
 		var optionItem=document.createElement('option');
 		optionItem.classList.add('option');
 		optionItem.textContent=option;
+		optionItem.setAttribute("value", option);
 		OptionList.appendChild(optionItem);
 		})
 	}

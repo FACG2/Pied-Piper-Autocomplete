@@ -5,7 +5,7 @@ const uniProcessor = require('./uniProcessor.js');
 const router = require('./router.js');
 
 const host = process.env.HOST || 'localhost';
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 
 
