@@ -31,4 +31,4 @@ the frond end part contains two sub-folders : **css folder **: contains the css 
 6. Start using the site.
 
 
-##### Try the site: [here](https://github.com/FACG2/Pied-Piper-Autocomplete/blob/master/public/index.html)
+##### Try the site: [here](https://pied-piper-universities.herokuapp.com)
