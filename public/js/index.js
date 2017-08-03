@@ -59,6 +59,7 @@ function showSug(data ,thisElement){
 		var optionItem=document.createElement('option');
 		optionItem.classList.add('option');
 		optionItem.textContent=option;
+		option.setAttribute("value", option);
 		OptionList.appendChild(optionItem);
 		})
 	}
