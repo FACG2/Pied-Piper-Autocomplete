@@ -23,7 +23,7 @@ the frond end part contains two sub-folders : **css folder **: contains the css 
 3. The site will reveal the information about the wanted university.
 
 ## How to run the project:
-1. Clone the project from [Here](https://github.com/FACG2/Pied-Piper-Autocomplete).
+1. Clone the project ```git clone https://github.com/FACG2/Pied-Piper-Autocomplete.git ```.
 2. Install the npm by ``` npm install ``` to install all dependencies
 3. Run ``` node src/server.js ```
 4. Navigate to  http://localhost:4000/  in your browser.
